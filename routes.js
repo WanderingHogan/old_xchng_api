@@ -6,5 +6,6 @@ module.exports = function(app, ExchangeRecord) {
     app.get("/api", helpController.help);
     app.get("/api/help", helpController.help);
     app.get("/api/listExchanges", helpController.exchanges);
+    app.get("/api/getLatestExchanges/:exchange?", getLatestController.getLatest);
     app.get("/api/getBestRate/:btc", getConvertedValuesController.getBestConvertedValue)
 };
