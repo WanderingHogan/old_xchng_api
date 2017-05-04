@@ -1,10 +1,27 @@
 'use strict';
+const fs = require('fs')
+
 module.exports =function(ExchangeRecord) {
     let module = {};
 
     // TODO: standardize response with response codes, something like:
     // {status: success, data: <data>} or {status: fail, message: 'something fucked up'}
     module.getBestConvertedValue = function(req, res){
+        // TODO: anyone running this will want to remove this, I just want to see who visits the API and what kind of traffic it gets.
+        try {
+            let nowTime = new Date();
+            fs.appendFile('log.txt', `${req.connection.remoteAddress} at ${nowTime}`, function (err) {
+                if (err) {
+                    // append failed
+                } else {
+                    // done
+                }
+            })
+        }
+        catch(e){
+            // dont see who looks at this
+        }
+
         const btc = Number(req.params.btc);
         let maxLTC = {
             'exchange': undefined,
