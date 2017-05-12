@@ -31,8 +31,8 @@ function doneTyping() {
 
 function drawfunction(data){
     for(var item in data){
-        // console.warn(data[item], data, item)
         if(item === 'BTC-DSH'){
+            $('#lastUpdateTime').html(data[item].updateTime + ' UTC');
             for(var a in data[item].allRates){
                 if(data[item].allRates[a].exchange === 'btc-e'){
                     if(data[item].allRates[a].value === data[item].bestRate){

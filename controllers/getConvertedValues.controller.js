@@ -33,10 +33,11 @@ module.exports =function(ExchangeRecord) {
                 let btc2eth = []
                 let btc2dash = []
                 let btc2ltc = []
+                let utcTimestamp;
                 for(var a in data){
                     // console.log(data)
+                    utcTimestamp = data[a].timeRecorded;
                     let exchange = data[a].exchange;
-                    let utcTimestamp = data[a].timeRecorded;
                     let latestRatesObject = data[a].values;
                     for(var b in latestRatesObject){
                         if(latestRatesObject[b].currency === 'BTC-LTC'){
@@ -67,18 +68,21 @@ module.exports =function(ExchangeRecord) {
                 }
                 res.jsonp({
                     'BTC-ETH': {
+                        'updateTime': utcTimestamp,
                         'bestRate': maxETH.exchangeRate,
                         'bestExchange': maxETH.exchange,
                         'bestExchangeValue': maxETH.exchangedValue,
                         'allRates': btc2eth
                     },
                     'BTC-DSH': {
+                        'updateTime': utcTimestamp,
                         'bestRate': maxDASH.exchangeRate,
                         'bestExchange': maxDASH.exchange,
                         'bestExchangeValue': maxDASH.exchangedValue,
                         'allRates': btc2dash
                     },
                     'BTC-LTC': {
+                        'updateTime': utcTimestamp,
                         'bestRate': maxLTC.exchangeRate,
                         'bestExchange': maxLTC.exchange,
                         'bestExchangeValue': maxLTC.exchangedValue,
