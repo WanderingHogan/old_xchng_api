@@ -1,13 +1,15 @@
-var express = require('express'),
+const express = require('express'),
 	corser = require('corser'),
-	bodyParser = require('body-parser');
+	bodyParser = require('body-parser'),
+	path = require('path');
 
 module.exports = function (app, config) {
 	
 	app.use(bodyParser())
 	
 	//setting up static directory to serve up front end site
-	app.use('/', express.static(__dirname + '../../client'));
+	console.warn(path.join(__dirname, '../xchng_frontend'))
+	app.use('/', express.static(path.join(__dirname, '../xchng_frontend')));
 	
 	//enable cross domain access everywhere!
 	app.use(corser.create());

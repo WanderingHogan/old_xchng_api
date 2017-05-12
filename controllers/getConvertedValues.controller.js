@@ -56,7 +56,7 @@ module.exports =function(ExchangeRecord) {
                             btc2dash.push({'exchange': exchange, 'utcTimeUpdated': utcTimestamp, 'value': latestRatesObject[b].buy, 'exchangeValue': Number(btc) /  latestRatesObject[b].buy})
                         }
                         if(latestRatesObject[b].currency === 'BTC-ETH'){
-                            if((maxETH.exchangeRate === null) || (maxDASH.exchangeRate > latestRatesObject[b].buy)){
+                            if((maxETH.exchangeRate === null) || (maxETH.exchangeRate > latestRatesObject[b].buy)){
                                 maxETH.exchange = exchange,
                                 maxETH.exchangeRate = Number(latestRatesObject[b].buy);
                                 maxETH.exchangedValue = Number(btc) / Number(latestRatesObject[b].buy);
